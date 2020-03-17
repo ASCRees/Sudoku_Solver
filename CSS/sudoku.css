@@ -1,0 +1,11 @@
+.entryval {
+    width: 40px;
+}
+
+table#sudokutab td {
+    width: 40px;
+}
+
+table#sudokutab td input {
+    width: 40px;
+}
