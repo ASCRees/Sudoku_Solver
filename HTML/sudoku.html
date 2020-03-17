@@ -8,10 +8,11 @@
     <title> - Git Hub Search</title>
     <link href="../CSS/bootstrap.css" rel="stylesheet" />
     <link href="../CSS/Site.css" rel="stylesheet" />
+
 </head>
 
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<body onload="loadSudokuGrid()">
+    <div class=" navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -31,8 +32,8 @@
                     <table border="1" id="sudokutab">
                     </table>
                 </div>
-
-                <input type="submit" name="SolveBtn" value="Solve" id="SolveButton" />
+                <br />
+                <input type="submit" name="SolveBtn" value="Solve" id="SolveButton" onclick="clickSolveButton()" />
                 <div class="SolverErrorDiv">
 
                 </div>
@@ -49,9 +50,9 @@
 
 
     <script src="../Scripts/bootstrap.js"></script>
-
     <script src="../Scripts/sudoku_solver_lib.js"></script>
     <script src="../Scripts/sudoku_solver_page.js"></script>
+
 
 </body>
 
