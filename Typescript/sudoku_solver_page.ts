@@ -1,11 +1,74 @@
-<tr>
-            <td><input type="number" id="00" name="00" value=0></td>
-            <td><input type="number" id="01" name="01" value=0></td>
-            <td><input type="number" id="02" name="02" value=0></td>
-            <td><input type="number" id="03" name="03" value=0></td>
-            <td><input type="number" id="04" name="04" value=0></td>
-            <td><input type="number" id="05" name="05" value=0></td>
-            <td><input type="number" id="06" name="06" value=0></td>
-            <td><input type="number" id="07" name="07" value=0></td>
-            <td><input type="number" id="08" name="08" value=0></td>
-        </tr>
+function loadSudokuGrid() {
+	let sudokuTable = document.querySelector("#sudokutab") as HTMLTableElement;
+	for (let rowIndex = 0; rowIndex < 9; rowIndex++) {
+		let row = sudokuTable.insertRow(rowIndex);
+		for (let cellIndex = 0; cellIndex < 9; cellIndex++) {
+			let cell = row.insertCell(cellIndex);
+			if (rowIndex == 2 || rowIndex == 5) {
+				if (cellIndex == 2 || cellIndex == 5) {
+					cell.className = "gridbottomright";
+				} else {
+					cell.className = "gridbottom";
+				}
+			} else if (cellIndex == 2 || cellIndex == 5) {
+				cell.className = "gridright";
+			}
+			let inputCell = document.createElement("input") as HTMLInputElement;
+			let inputCellID = "g" + rowIndex.toString() + cellIndex.toString();
+			inputCell.type = "number";
+			inputCell.id = inputCellID;
+			inputCell.name = inputCellID;
+			inputCell.value = "0";
+			cell.appendChild(inputCell);
+		}
+	}
+	prePopulateGrid();
+}
+
+function readSudokuGrid(): number[][] {
+	let grid: number[][] = [...Array(9)].map(e => Array(9).fill(0));
+	for (let rowIndex = 0; rowIndex < 9; rowIndex++) {
+		for (let cellIndex = 0; cellIndex < 9; cellIndex++) {
+			let gridElement = document.querySelector("#g" + rowIndex.toString() + cellIndex.toString()) as HTMLInputElement;
+			grid[rowIndex][cellIndex] = Number(gridElement.value);
+		}
+	}
+	return grid;
+}
+
+function populateSudokuGrid(grid: number[][]) {
+	for (let rowIndex = 0; rowIndex < 9; rowIndex++) {
+		for (let cellIndex = 0; cellIndex < 9; cellIndex++) {
+			let gridElement = document.querySelector("#g" + rowIndex.toString() + cellIndex.toString()) as HTMLInputElement;
+			gridElement.value = grid[rowIndex][cellIndex].toString();
+		}
+	}
+}
+
+function prePopulateGrid() {
+	let gridStart: number[][] = [...Array(9)].map(e => Array(9).fill(0));
+	gridStart = [
+		[0, 8, 0, 5, 3, 0, 2, 7, 6],
+		[0, 5, 0, 6, 0, 0, 0, 0, 0],
+		[6, 1, 3, 0, 0, 0, 0, 0, 0],
+		[0, 0, 6, 0, 5, 0, 0, 0, 0],
+		[0, 3, 2, 0, 0, 0, 7, 0, 1],
+		[7, 4, 5, 0, 0, 8, 6, 9, 3],
+		[0, 7, 0, 9, 6, 0, 5, 0, 0],
+		[4, 0, 0, 1, 8, 0, 0, 6, 7],
+		[5, 0, 0, 0, 0, 4, 8, 2, 9]
+	];
+	populateSudokuGrid(gridStart);
+}
+
+function clickSolveButton() {
+	let gridEnd: number[][] = readSudokuGrid();
+	gridEnd = generate_display_grid(gridEnd);
+	populateSudokuGrid(gridEnd);
+}
+
+function generate_display_grid(grid: number[][]): number[][] {
+	let sudokuSolver = new Sudoko.SolveSudoko(grid);
+	grid = sudokuSolver.solveSudoku();
+	return grid;
+}

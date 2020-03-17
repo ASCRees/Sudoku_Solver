@@ -23,34 +23,54 @@ textarea {
     max-width: 280px;
 }
 
-#userDetailsTable th {
-    width: 200px;
+brand {
+    color: #f2f4f2;
 }
 
-input#userName {
-    width: 500px;
+.navbar-inverse .navbar-brand {
+    color: #f2f4f2;
+}
+
+table#sudokutab input {
+    height: 40px;
+    text-align: right;
+}
+
+.navbar-inverse {
+    background-color: #32259d;
+    border-color: #080808;
 }
 
 span.field-validation-error {
     color: red;
 }
 
-.userNameErrorDiv {
-    color: #86181d;
-    background-color: #ffdce0;
-    display: none;
-    border: black;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 3px;
-    font-size: 13px;
-    font-weight: 400;
-    position: absolute;
-    margin-left: 110px;
-    padding: 5px 8px;
-    margin-top: 4px;
+
+.entryval {
+    width: 40px;
 }
 
-.SearchResultsTableDiv {
-    visibility:hidden;
+table#sudokutab td {
+    width: 40px;
+}
+
+table#sudokutab td input {
+    width: 40px;
+}
+
+table .gridbottomright {
+    border-right: solid;
+    border-bottom: solid;
+    border-right-width: thick;
+    border-bottom-width: thick;
+}
+
+table .gridbottom {
+    border-bottom: solid;
+    border-bottom-width: thick;
+}
+
+table .gridright {
+    border-right: solid;
+    border-right-width: thick;
 }
