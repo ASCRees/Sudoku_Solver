@@ -43,19 +43,22 @@ var Sudoko;
                             if (this.checkPosition(lindexy, lindexx, numval)) {
                                 this.grid[lindexy][lindexx] = numval;
                                 returnVal = true;
-                                let r = this.buildSolvedGrid();
-                                if (!r) {
+                                if (!this.buildSolvedGrid()) {
                                     this.grid[lindexy][lindexx] = 0;
+                                    returnVal = false;
                                 }
                             }
                         }
-                        return returnVal;
+                        if (this.grid[lindexy][lindexx] == 0) {
+                            return returnVal;
+                        }
                     }
                 }
             }
             return returnVal;
         }
         solveSudoku() {
+            this.buildSolvedGrid();
             this.buildSolvedGrid();
             return this.grid;
         }

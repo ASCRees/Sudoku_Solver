@@ -6,7 +6,7 @@ namespace Sudoko {
 			this.grid = startingGrid;
 		}
 
-		private checkPosition(y: number, x: number, n: number): boolean {
+		public checkPosition(y: number, x: number, n: number): boolean {
 			for (let index: number = 0; index < 9; index++) {
 				if (this.grid[y][index] == n) {
 					return false;
@@ -51,13 +51,15 @@ namespace Sudoko {
 							if (this.checkPosition(lindexy, lindexx, numval)) {
 								this.grid[lindexy][lindexx] = numval;
 								returnVal = true;
-								let r = this.buildSolvedGrid();
-								if (!r) {
+								if (!this.buildSolvedGrid()) {
 									this.grid[lindexy][lindexx] = 0;
+									returnVal = false;
 								}
 							}
 						}
-						return returnVal;
+						if (this.grid[lindexy][lindexx] == 0) {
+							return returnVal;
+						}
 					}
 				}
 			}
@@ -65,6 +67,7 @@ namespace Sudoko {
 		}
 
 		public solveSudoku(): number[][] {
+			this.buildSolvedGrid();
 			this.buildSolvedGrid();
 			return this.grid;
 		}
