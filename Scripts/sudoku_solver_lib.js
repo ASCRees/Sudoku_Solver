@@ -6,6 +6,9 @@ var Sudoko;
             this.grid = startingGrid;
         }
         checkPosition(y, x, n) {
+            if (this.grid[y][x] != 0) {
+                return false;
+            }
             for (let index = 0; index < 9; index++) {
                 if (this.grid[y][index] == n) {
                     return false;
@@ -58,7 +61,6 @@ var Sudoko;
             return returnVal;
         }
         solveSudoku() {
-            this.buildSolvedGrid();
             this.buildSolvedGrid();
             return this.grid;
         }

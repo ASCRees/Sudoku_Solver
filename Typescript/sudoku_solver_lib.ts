@@ -7,6 +7,9 @@ namespace Sudoko {
 		}
 
 		public checkPosition(y: number, x: number, n: number): boolean {
+			if (this.grid[y][x] != 0) {
+				return false;
+			}
 			for (let index: number = 0; index < 9; index++) {
 				if (this.grid[y][index] == n) {
 					return false;
@@ -67,7 +70,6 @@ namespace Sudoko {
 		}
 
 		public solveSudoku(): number[][] {
-			this.buildSolvedGrid();
 			this.buildSolvedGrid();
 			return this.grid;
 		}

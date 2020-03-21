@@ -38,12 +38,12 @@ function readSudokuGrid() {
     return grid;
 }
 function populateSudokuGrid(grid) {
-    for (let rowIndex = 0; rowIndex < 9; rowIndex++) {
-        for (let cellIndex = 0; cellIndex < 9; cellIndex++) {
-            let gridElement = document.querySelector("#g" + rowIndex.toString() + cellIndex.toString());
-            gridElement.value = grid[rowIndex][cellIndex].toString();
-        }
-    }
+    grid.map((yarray, yIndex) => {
+        yarray.map((xarray, xIndex) => {
+            let gridElement = document.querySelector("#g" + yIndex.toString() + xIndex.toString());
+            gridElement.value = xarray.toString();
+        });
+    });
 }
 function clearGrid() {
     let grid = [...Array(9)].map(e => Array(9).fill(0));
