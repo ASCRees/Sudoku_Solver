@@ -21,10 +21,11 @@ function loadSudokuGrid() {
             inputCell.id = inputCellID;
             inputCell.name = inputCellID;
             inputCell.value = "0";
+            inputCell.max = "9";
+            inputCell.min = "0";
             cell.appendChild(inputCell);
         }
     }
-    prePopulateGrid();
 }
 function readSudokuGrid() {
     let grid = [...Array(9)].map(e => Array(9).fill(0));
@@ -37,16 +38,23 @@ function readSudokuGrid() {
     return grid;
 }
 function populateSudokuGrid(grid) {
-    for (let rowIndex = 0; rowIndex < 9; rowIndex++) {
-        for (let cellIndex = 0; cellIndex < 9; cellIndex++) {
-            let gridElement = document.querySelector("#g" + rowIndex.toString() + cellIndex.toString());
-            gridElement.value = grid[rowIndex][cellIndex].toString();
-        }
-    }
+    grid.map((yarray, yIndex) => {
+        yarray.map((xarray, xIndex) => {
+            let gridElement = document.querySelector("#g" + yIndex.toString() + xIndex.toString());
+            gridElement.value = xarray.toString();
+        });
+    });
+}
+function clearGrid() {
+    let grid = [...Array(9)].map(e => Array(9).fill(0));
+    populateSudokuGrid(grid);
+}
+function loadDemo() {
+    prePopulateGrid();
 }
 function prePopulateGrid() {
     let gridStart = [...Array(9)].map(e => Array(9).fill(0));
-    gridStart = [
+    let gridDemo1 = [
         [0, 8, 0, 5, 3, 0, 2, 7, 6],
         [0, 5, 0, 6, 0, 0, 0, 0, 0],
         [6, 1, 3, 0, 0, 0, 0, 0, 0],
@@ -57,7 +65,29 @@ function prePopulateGrid() {
         [4, 0, 0, 1, 8, 0, 0, 6, 7],
         [5, 0, 0, 0, 0, 4, 8, 2, 9]
     ];
-    populateSudokuGrid(gridStart);
+    let gridDemo2 = [
+        [0, 0, 3, 8, 0, 0, 0, 7, 2],
+        [0, 0, 4, 0, 0, 0, 0, 5, 3],
+        [0, 7, 0, 0, 2, 0, 6, 0, 0],
+        [9, 0, 0, 7, 0, 5, 0, 3, 6],
+        [5, 3, 0, 0, 6, 0, 0, 2, 9],
+        [8, 4, 0, 2, 0, 9, 0, 0, 7],
+        [0, 0, 5, 0, 8, 0, 0, 4, 0],
+        [3, 1, 0, 0, 0, 0, 2, 0, 0],
+        [4, 6, 0, 0, 0, 1, 7, 0, 0]
+    ];
+    let gridDemo3 = [
+        [9, 0, 0, 0, 0, 0, 5, 3, 0],
+        [2, 0, 0, 8, 0, 1, 0, 0, 9],
+        [0, 3, 0, 0, 0, 9, 0, 2, 7],
+        [3, 0, 0, 0, 0, 0, 0, 6, 0],
+        [0, 0, 6, 9, 0, 8, 0, 0, 4],
+        [4, 9, 0, 7, 0, 0, 0, 0, 0],
+        [0, 0, 4, 0, 0, 0, 0, 1, 0],
+        [0, 0, 0, 1, 0, 7, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0]
+    ];
+    populateSudokuGrid(gridDemo3);
 }
 function clickSolveButton() {
     let gridEnd = readSudokuGrid();
