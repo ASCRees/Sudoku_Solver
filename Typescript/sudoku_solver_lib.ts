@@ -1,4 +1,4 @@
-namespace Sudoko {
+export namespace Sudoko {
 	export class SolveSudoko {
 		private grid: number[][] = [...Array(9)].map(e => Array(9).fill(0));
 
@@ -34,13 +34,6 @@ namespace Sudoko {
 			}
 
 			return true;
-		}
-
-		public printGrid() {
-			let square: number = 1;
-			for (let YPosition: number = 0; YPosition < 9; YPosition++) {
-				console.log(this.grid[YPosition].map(a => a.toString()).join(" "));
-			}
 		}
 
 		private buildSolvedGrid(): boolean {

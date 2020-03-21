@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Sudoko;
 (function (Sudoko) {
     class SolveSudoko {
@@ -30,12 +32,6 @@ var Sudoko;
             }
             return true;
         }
-        printGrid() {
-            let square = 1;
-            for (let YPosition = 0; YPosition < 9; YPosition++) {
-                console.log(this.grid[YPosition].map(a => a.toString()).join(" "));
-            }
-        }
         buildSolvedGrid() {
             let returnVal = true;
             for (let lindexy = 0; lindexy < 9; lindexy++) {
@@ -66,5 +62,5 @@ var Sudoko;
         }
     }
     Sudoko.SolveSudoko = SolveSudoko;
-})(Sudoko || (Sudoko = {}));
+})(Sudoko = exports.Sudoko || (exports.Sudoko = {}));
 //# sourceMappingURL=sudoku_solver_lib.js.map
