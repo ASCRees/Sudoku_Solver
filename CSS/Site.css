@@ -74,3 +74,34 @@ table .gridright {
     border-right: solid;
     border-right-width: thick;
 }
+
+div .SudokuResultsDivInvisible {
+    visibility: hidden;
+}
+
+div .SudokuResultsDivVisible {
+    visibility: visible;
+}
+
+div#SudokuGridOuter {
+    width: 600px;
+}
+
+div#SudokuBelow {
+    float: left;
+    margin-top: 30px;
+}
+
+/* div #SudokuRight {
+    float: right;
+} */
+
+div#SudokuLeft {
+    width: 500px;
+    float: left;
+}
+
+footer {
+    margin-left: 35px;
+    margin-top: 20px;
+}
