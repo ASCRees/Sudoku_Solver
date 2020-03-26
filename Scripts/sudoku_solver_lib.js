@@ -3,23 +3,21 @@ var Sudoko;
     //implements ISolveSudoko
     class SolveSudoko {
         constructor(startingGrid) {
-            this.grid = [...Array(9)].map(e => Array(9).fill(0));
+            this.startingGrid = startingGrid;
             this.listofcompletedgrids = [];
-            //new Array([]);
             this.solutions = 0;
-            this.grid = startingGrid;
         }
         checkPosition(y, x, n) {
-            if (this.grid[y][x] != 0) {
+            if (this.startingGrid[y][x] != 0) {
                 return false;
             }
             for (let index = 0; index < 9; index++) {
-                if (this.grid[y][index] == n) {
+                if (this.startingGrid[y][index] == n) {
                     return false;
                 }
             }
             for (let index = 0; index < 9; index++) {
-                if (this.grid[index][x] == n) {
+                if (this.startingGrid[index][x] == n) {
                     return false;
                 }
             }
@@ -27,7 +25,7 @@ var Sudoko;
             let y0 = Math.floor(y / 3) * 3;
             for (let indexy = 0; indexy < 3; indexy++) {
                 for (let indexx = 0; indexx < 3; indexx++) {
-                    if (this.grid[y0 + indexy][x0 + indexx] == n) {
+                    if (this.startingGrid[y0 + indexy][x0 + indexx] == n) {
                         return false;
                     }
                 }
@@ -41,106 +39,58 @@ var Sudoko;
             for (let index = 0; index < 81; index++) {
                 lindexy = Math.floor(index / 9);
                 lindexx = index % 9;
-                if (this.grid[lindexy][lindexx] == 0) {
+                if (this.startingGrid[lindexy][lindexx] == 0) {
                     returnVal = false;
                     for (let numval = 1; numval < 10; numval++) {
                         if (this.checkPosition(lindexy, lindexx, numval)) {
-                            this.grid[lindexy][lindexx] = numval;
+                            this.startingGrid[lindexy][lindexx] = numval;
                             returnVal = true;
-                            if (this.CheckIsComplete()) {
+                            if (this.checkIsComplete()) {
                                 this.solutions = this.solutions + 1;
-                                //let currListItem: number = this.listofcompletedgrids ? this.listofcompletedgrids.length : 0;
-                                let testgrid = [...Array(9)].map(e => Array(9).fill(0));
-                                for (let index = 0; index < 81; index++) {
-                                    let lindexy = Math.floor(index / 9);
-                                    let lindexx = index % 9;
-                                    let value = this.grid[lindexy][lindexx];
-                                    testgrid[lindexy][lindexx] = value;
-                                    // var test = this.grid.slice();
-                                    //let test = this.grid.map(a=>{return a})
-                                }
-                                this.listofcompletedgrids.push(testgrid);
-                                // var test = this.grid.slice();
-                                // this.listofcompletedgrids.push(test);
-                                // this.listofcompletedgrids.push(
-                                // 	this.grid.map(a => {
-                                // 		return a;
-                                // 	})
-                                // );
-                                //this.listofcompletedgrids.push(...this.grid);
-                                // console.log("1:Is Complete Returning +" + numval + " - " + this.solutions);
-                                // let square: number = 1;
-                                // for (let YPosition: number = 0; YPosition < 9; YPosition++) {
-                                // 	console.log(this.grid[YPosition].map(a => a.toString()).join(" "));
-                                // }
-                                // console.log("");
+                                this.addToListOfSolvedGrids();
                                 return false;
                                 break;
                             }
                             else {
                                 if (!this.buildSolvedGrid()) {
-                                    this.grid[lindexy][lindexx] = 0;
+                                    this.startingGrid[lindexy][lindexx] = 0;
                                     returnVal = false;
                                 }
                             }
                         }
                     }
-                    if (this.grid[lindexy][lindexx] == 0) {
+                    if (this.startingGrid[lindexy][lindexx] == 0) {
                         break;
                     }
                 }
             }
-            // if (this.CheckIsComplete()) {
-            // 	this.solutions = this.solutions + 1;
-            // 	console.log("2:Is Complete Returning +" + this.solutions);
-            // }
-            //this.grid[lindexy][lindexx] = 0;
-            // if (this.grid[lindexy][lindexx] == 0) {
-            // 	break;
-            // }
             return returnVal;
-            // for (let lindexy: number = 0; lindexy < 9; lindexy++) {
-            // 	for (let lindexx: number = 0; lindexx < 9; lindexx++) {
-            // 		if (this.grid[lindexy][lindexx] == 0) {
-            // 			returnVal = false;
-            // 			for (let numval: number = 1; numval < 10; numval++) {
-            // 				if (this.checkPosition(lindexy, lindexx, numval)) {
-            // 					this.grid[lindexy][lindexx] = numval;
-            // 					returnVal = true;
-            // 					if (!this.buildSolvedGrid()) {
-            // 						this.grid[lindexy][lindexx] = 0;
-            // 						returnVal = false;
-            // 					}
-            // 				}
-            // 			}
-            // 			if (this.grid[lindexy][lindexx] == 0) {
-            // 				lindexy = lindexx = 9;
-            // 				break;
-            // 			}
-            // 		}
-            // 	}
-            // }
-            // this.CheckIsComplete(2);
-            // return returnVal;
         }
-        CheckIsComplete() {
+        // Build a copy of the completed grid as an array is a reference type if we dont copy the values the starting grid will be set in the listofcompletedgrids rather than the completed one.
+        addToListOfSolvedGrids() {
+            let completedgrid = [...Array(9)].map(e => Array(9).fill(0));
+            for (let index = 0; index < 81; index++) {
+                let lindexy = Math.floor(index / 9);
+                let lindexx = index % 9;
+                let value = this.startingGrid[lindexy][lindexx];
+                completedgrid[lindexy][lindexx] = value;
+            }
+            this.listofcompletedgrids.push(completedgrid);
+        }
+        checkIsComplete() {
             let complete = true;
             for (let index = 0; index < 81; index++) {
                 let lindexy = Math.floor(index / 9);
                 let lindexx = index % 9;
-                if (this.grid[lindexy][lindexx] == 0) {
+                if (this.startingGrid[lindexy][lindexx] == 0) {
                     return false;
                 }
             }
             return complete;
         }
-        getListOfGrids() {
-            return this.listofcompletedgrids;
-        }
         solveSudoku() {
             this.buildSolvedGrid();
-            let x = this.getListOfGrids();
-            return x;
+            return this.listofcompletedgrids;
         }
     }
     Sudoko.SolveSudoko = SolveSudoko;

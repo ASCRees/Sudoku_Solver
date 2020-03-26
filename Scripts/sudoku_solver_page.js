@@ -34,6 +34,8 @@ function loadSudokuGridResultsList(numberOfResults) {
         let sudokuRightDiv = document.getElementById("SudokuRight");
         let sudokuNumResultsPara = document.createElement("p");
         sudokuNumResultsPara.textContent = "There are " + numberOfResults.toString() + " results";
+        sudokuNumResultsPara.id = "SudokuNumberOfResultsP";
+        sudokuNumResultsPara.innerHTML = sudokuNumResultsPara.textContent;
         let sudokuResultsDiv = document.getElementById("SudokuResults");
         let sudokuResultsList = document.createElement("ol");
         sudokuResultsList.type = "1";
@@ -45,6 +47,7 @@ function loadSudokuGridResultsList(numberOfResults) {
             listElement.appendChild(anchor);
             sudokuResultsList.appendChild(listElement);
         }
+        sudokuResultsDiv.appendChild(sudokuNumResultsPara);
         sudokuResultsDiv.appendChild(sudokuResultsList);
         sudokuRightDiv.className = "SudokuResultsDivVisible";
     }

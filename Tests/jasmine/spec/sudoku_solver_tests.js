@@ -99,3 +99,76 @@ describe('Test CheckPosition', () => {
         expect(result).toBe(true);
     });
 });
+
+describe('Test CheckPosition', () => {
+
+    var gridDemo;
+
+    beforeAll(() => {
+        gridDemo = [
+            [2, 8, 6, 1, 5, 9, 7, 4, 3],
+            [3, 5, 4, 7, 6, 8, 9, 1, 2],
+            [7, 1, 9, 2, 4, 3, 5, 6, 8],
+            [8, 2, 3, 6, 1, 5, 4, 9, 7],
+            [6, 9, 7, 8, 2, 4, 1, 3, 5],
+            [1, 4, 5, 3, 9, 7, 8, 2, 6],
+            [5, 6, 8, 9, 3, 1, 2, 7, 4],
+            [4, 3, 1, 5, 7, 2, 6, 8, 9],
+            [9, 7, 2, 4, 8, 6, 3, 5, 1]
+        ];
+    });
+
+
+    it('Check Position grid is complete', () => {
+        let sudoku1 = new Sudoko.SolveSudoko(gridDemo);
+        let result = sudoku1.checkIsComplete();
+        expect(result).toBe(true);
+    });
+
+    it('Check Position grid is not complete', () => {
+
+        let tempGrid = [
+            [0, 8, 6, 1, 5, 9, 7, 4, 3],
+            [3, 5, 4, 7, 6, 8, 9, 1, 2],
+            [7, 1, 9, 2, 4, 3, 5, 6, 8],
+            [8, 2, 3, 6, 1, 5, 4, 9, 7],
+            [6, 9, 7, 8, 2, 4, 1, 3, 5],
+            [1, 4, 5, 3, 9, 7, 8, 2, 6],
+            [5, 6, 8, 9, 3, 1, 2, 7, 4],
+            [4, 3, 1, 5, 7, 2, 6, 8, 9],
+            [9, 7, 2, 4, 8, 6, 3, 5, 1]
+        ];;
+        let sudoku1 = new Sudoko.SolveSudoko(tempGrid);
+        let result = sudoku1.checkIsComplete();
+        expect(result).toBe(false);
+    });
+});
+
+describe('Test AddToListOfSolvedGrids', () => {
+
+    var gridDemo;
+    var sudoku1;
+
+    beforeAll(() => {
+        gridDemo = [
+            [2, 8, 6, 1, 5, 9, 7, 4, 3],
+            [3, 5, 4, 7, 6, 8, 9, 1, 2],
+            [7, 1, 9, 2, 4, 3, 5, 6, 8],
+            [8, 2, 3, 6, 1, 5, 4, 9, 7],
+            [6, 9, 7, 8, 2, 4, 1, 3, 5],
+            [1, 4, 5, 3, 9, 7, 8, 2, 6],
+            [5, 6, 8, 9, 3, 1, 2, 7, 4],
+            [4, 3, 1, 5, 7, 2, 6, 8, 9],
+            [9, 7, 2, 4, 8, 6, 3, 5, 1]
+        ];
+    });
+
+
+    it('Check Grid is added to completed grid list', () => {
+        sudoku1 = new Sudoko.SolveSudoko(gridDemo);
+        sudoku1.addToListOfSolvedGrids();
+        expect((sudoku1.listofcompletedgrids.length > 0)).toBe(true);
+    });
+
+
+});

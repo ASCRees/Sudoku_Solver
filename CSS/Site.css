@@ -85,6 +85,7 @@ div .SudokuResultsDivVisible {
 
 div#SudokuGridOuter {
     width: 600px;
+    height: 420px;
 }
 
 div#SudokuBelow {
@@ -92,16 +93,23 @@ div#SudokuBelow {
     margin-top: 30px;
 }
 
-/* div #SudokuRight {
+div #SudokuRight {
     float: right;
-} */
+}
+
+div#SudokuResults {
+    height: inherit;
+}
 
 div#SudokuLeft {
-    width: 500px;
     float: left;
 }
 
+div#SudokuGrid {
+    width: 450px;
+}
+
+
 footer {
-    margin-left: 35px;
     margin-top: 20px;
 }

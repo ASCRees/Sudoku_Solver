@@ -35,7 +35,9 @@ function loadSudokuGridResultsList(numberOfResults: number) {
 		let sudokuRightDiv: HTMLDivElement = document.getElementById("SudokuRight") as HTMLDivElement;
 		let sudokuNumResultsPara: HTMLParagraphElement = document.createElement("p") as HTMLParagraphElement;
 		sudokuNumResultsPara.textContent = "There are " + numberOfResults.toString() + " results";
+		sudokuNumResultsPara.id = "SudokuNumberOfResultsP";
 
+		sudokuNumResultsPara.innerHTML = sudokuNumResultsPara.textContent;
 		let sudokuResultsDiv: HTMLDivElement = document.getElementById("SudokuResults") as HTMLDivElement;
 		let sudokuResultsList: HTMLOListElement = document.createElement("ol") as HTMLOListElement;
 		sudokuResultsList.type = "1";
