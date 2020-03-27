@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const sudoku_solver_lib_1 = require("./sudoku_solver_lib");
-var Sudoko1;
-(function (Sudoko1) {
+var SudokoGenerate;
+(function (SudokoGenerate) {
     class GenerateSudoko {
         generateThreeByThreeGrid() {
             let gridValues = this.randomSort([1, 2, 3, 4, 5, 6, 7, 8, 9]);
@@ -51,7 +51,7 @@ var Sudoko1;
         }
         generateStartingGrid() {
             //let grid: number[][] = this.buildStartingGrid();
-            let grid = [
+            let sampleStartingGrid1 = [
                 // Single solution
                 [0, 8, 0, 5, 3, 0, 2, 7, 6],
                 [0, 5, 0, 6, 0, 0, 0, 0, 0],
@@ -63,19 +63,19 @@ var Sudoko1;
                 [4, 0, 0, 1, 8, 0, 0, 6, 7],
                 [5, 0, 0, 0, 0, 4, 8, 2, 9]
             ];
-            // let grid: number[][] = [
-            // 	// Mutiple solutions
-            // 	[0, 8, 0, 0, 0, 9, 7, 4, 3],
-            // 	[0, 5, 0, 0, 0, 8, 0, 1, 0],
-            // 	[0, 1, 0, 0, 0, 0, 0, 0, 0],
-            // 	[8, 0, 0, 0, 0, 5, 0, 0, 0],
-            // 	[0, 0, 0, 8, 0, 4, 0, 0, 0],
-            // 	[0, 0, 0, 3, 0, 0, 0, 0, 6],
-            // 	[0, 0, 0, 0, 0, 0, 0, 7, 0],
-            // 	[0, 3, 0, 5, 0, 0, 0, 8, 0],
-            // 	[9, 7, 2, 4, 0, 0, 0, 5, 0]
-            // ];
-            let sudokuSolver = new sudoku_solver_lib_1.Sudoko.SolveSudoko(grid);
+            let sampleStartingGrid2 = [
+                // Mutiple solutions
+                [0, 8, 0, 0, 0, 9, 7, 4, 3],
+                [0, 5, 0, 0, 0, 8, 0, 1, 0],
+                [0, 1, 0, 0, 0, 0, 0, 0, 0],
+                [8, 0, 0, 0, 0, 5, 0, 0, 0],
+                [0, 0, 0, 8, 0, 4, 0, 0, 0],
+                [0, 0, 0, 3, 0, 0, 0, 0, 6],
+                [0, 0, 0, 0, 0, 0, 0, 7, 0],
+                [0, 3, 0, 5, 0, 0, 0, 8, 0],
+                [9, 7, 2, 4, 0, 0, 0, 5, 0]
+            ];
+            let sudokuSolver = new sudoku_solver_lib_1.Sudoko.SolveSudoko(sampleStartingGrid1);
             let numberofSolutions = sudokuSolver.solutions;
             console.log("1.Number of solutions " + numberofSolutions);
             let endinggrid1 = sudokuSolver.solveSudoku();
@@ -87,8 +87,8 @@ var Sudoko1;
             return completedGrid;
         }
     }
-    Sudoko1.GenerateSudoko = GenerateSudoko;
-})(Sudoko1 = exports.Sudoko1 || (exports.Sudoko1 = {}));
-let generator = new Sudoko1.GenerateSudoko();
+    SudokoGenerate.GenerateSudoko = GenerateSudoko;
+})(SudokoGenerate = exports.SudokoGenerate || (exports.SudokoGenerate = {}));
+let generator = new SudokoGenerate.GenerateSudoko();
 generator.generateStartingGrid();
 //# sourceMappingURL=sudoku_generator_lib.js.map

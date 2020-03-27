@@ -1,6 +1,6 @@
 import { Sudoko } from "./sudoku_solver_lib";
 
-export namespace Sudoko1 {
+export namespace SudokoGenerate {
 	interface IGenerateSudoku {
 		generateThreeByThreeGrid(): number[][];
 		buildStartingGrid(): number[][];
@@ -69,7 +69,7 @@ export namespace Sudoko1 {
 		public generateStartingGrid() {
 			//let grid: number[][] = this.buildStartingGrid();
 
-			let grid: number[][] = [
+			let sampleStartingGrid1: number[][] = [
 				// Single solution
 				[0, 8, 0, 5, 3, 0, 2, 7, 6],
 				[0, 5, 0, 6, 0, 0, 0, 0, 0],
@@ -82,19 +82,20 @@ export namespace Sudoko1 {
 				[5, 0, 0, 0, 0, 4, 8, 2, 9]
 			];
 
-			// let grid: number[][] = [
-			// 	// Mutiple solutions
-			// 	[0, 8, 0, 0, 0, 9, 7, 4, 3],
-			// 	[0, 5, 0, 0, 0, 8, 0, 1, 0],
-			// 	[0, 1, 0, 0, 0, 0, 0, 0, 0],
-			// 	[8, 0, 0, 0, 0, 5, 0, 0, 0],
-			// 	[0, 0, 0, 8, 0, 4, 0, 0, 0],
-			// 	[0, 0, 0, 3, 0, 0, 0, 0, 6],
-			// 	[0, 0, 0, 0, 0, 0, 0, 7, 0],
-			// 	[0, 3, 0, 5, 0, 0, 0, 8, 0],
-			// 	[9, 7, 2, 4, 0, 0, 0, 5, 0]
-			// ];
-			let sudokuSolver: Sudoko.SolveSudoko = new Sudoko.SolveSudoko(grid);
+			let sampleStartingGrid2: number[][] = [
+				// Mutiple solutions
+				[0, 8, 0, 0, 0, 9, 7, 4, 3],
+				[0, 5, 0, 0, 0, 8, 0, 1, 0],
+				[0, 1, 0, 0, 0, 0, 0, 0, 0],
+				[8, 0, 0, 0, 0, 5, 0, 0, 0],
+				[0, 0, 0, 8, 0, 4, 0, 0, 0],
+				[0, 0, 0, 3, 0, 0, 0, 0, 6],
+				[0, 0, 0, 0, 0, 0, 0, 7, 0],
+				[0, 3, 0, 5, 0, 0, 0, 8, 0],
+				[9, 7, 2, 4, 0, 0, 0, 5, 0]
+			];
+
+			let sudokuSolver: Sudoko.SolveSudoko = new Sudoko.SolveSudoko(sampleStartingGrid1);
 			let numberofSolutions: number = sudokuSolver.solutions;
 			console.log("1.Number of solutions " + numberofSolutions);
 			let endinggrid1: [number[][]] = sudokuSolver.solveSudoku();
@@ -110,6 +111,6 @@ export namespace Sudoko1 {
 	}
 }
 
-let generator = new Sudoko1.GenerateSudoko();
+let generator = new SudokoGenerate.GenerateSudoko();
 
 generator.generateStartingGrid();
