@@ -28,16 +28,27 @@
         <br />
         <tr>
             <td>
-                <div id="SudokuGrid" class="SudokuGridDiv">
-                    <table border="1" id="sudokutab">
-                    </table>
-                </div>
-                <br />
-                <input type="submit" name="SolveBtn" value="Solve" id="SolveButton" onclick="clickSolveButton()" />
-                <input type="submit" name="ClearBtn" value="Clear" id="ClearButton" onclick="clearGrid()" />
-                <input type="submit" name="DemoBtn" value="Load Demo" id="DemoButton" onclick="loadDemo()" />
-                <div class="SolverErrorDiv">
+                <div id="SudokuGridOuter" id="SudokuGridOuterDiv">
+                    <div id="SudokuLeft" id="SudokuGridLeftDiv">
+                        <div id="SudokuGrid" id="SudokuGridDiv">
+                            <table border="1" id="sudokutab">
+                            </table>
+                        </div>
+                    </div>
+                    <div id="SudokuRight" class="SudokuResultDivInvisible">
+                        <div id="SudokuResults" class="SudokuResultsDiv">
+                        </div>
+                    </div>
+                    <!-- <br /> -->
+                    <div id="SudokuBelow">
+                        <input type="submit" name="SolveBtn" value="Solve" id="SolveButton"
+                            onclick="clickSolveButton()" />
+                        <input type="submit" name="ClearBtn" value="Clear" id="ClearButton" onclick="clearGrid()" />
+                        <input type="submit" name="DemoBtn" value="Load Demo" id="DemoButton" onclick="loadDemo()" />
+                    </div>
+                    <div class="SolverErrorDiv">
 
+                    </div>
                 </div>
             </td>
         </tr>
@@ -45,10 +56,12 @@
         <br />
 
         <hr />
+
         <footer>
             <p>&copy; 2020 - Sudoku Solver</p>
         </footer>
     </div>
+
 
 
     <script src="../Scripts/bootstrap.js"></script>
