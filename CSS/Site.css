@@ -91,6 +91,7 @@ div#SudokuGridOuter {
 div#SudokuBelow {
     float: left;
     margin-top: 30px;
+    margin-left: 15px;
 }
 
 div #SudokuRight {
@@ -112,4 +113,18 @@ div#SudokuGrid {
 
 footer {
     margin-top: 20px;
+}
+
+p#SudokuNumberOfResultsP {
+    margin-left: 25px;
+}
+
+
+
+
+div#SudokuResults a:hover,
+a:active {
+    background-color: #32259d;
+    color: white;
+    text-decoration: none;
 }
