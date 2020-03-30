@@ -43,7 +43,7 @@ function loadSudokuGridResultsList(numberOfResults: number) {
 		for (let index: number = 0; index < numberOfResults; index++) {
 			let anchor: HTMLAnchorElement = document.createElement("a") as HTMLAnchorElement;
 			anchor.setAttribute("onclick", "displayGridResults(" + index.toString() + ")");
-			anchor.innerText = "Solution - " + index.toString();
+			anchor.innerText = "Solution - " + (index + 1).toString();
 			let listElement: HTMLLIElement = document.createElement("li") as HTMLLIElement;
 			listElement.appendChild(anchor);
 			sudokuResultsList.appendChild(listElement);
