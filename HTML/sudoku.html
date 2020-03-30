@@ -28,29 +28,38 @@
         <br />
         <tr>
             <td>
-                <div id="SudokuGridOuter" id="SudokuGridOuterDiv">
-                    <div id="SudokuLeft" id="SudokuGridLeftDiv">
-                        <div id="SudokuGrid" id="SudokuGridDiv">
+                <div id="SudokuGridOuterDiv" class="row">
+                    <div id="SudokuGridLeftDiv" class="col-md-2">
+                        <!-- <div id="SudokuGrid" id="SudokuGridDiv"> -->
                             <table border="1" id="sudokutab">
                             </table>
+                        <!-- </div> -->
+                    </div>
+                    <div id="SudokuRight" class="col-md-7">
+                        <div id="SudokuResults">
                         </div>
                     </div>
-                    <div id="SudokuRight" class="SudokuResultDivInvisible">
-                        <div id="SudokuResults" class="SudokuResultsDiv">
-                        </div>
-                    </div>
-                    <!-- <br /> -->
+                </div>
+                <!-- <br /> -->
+                <div id="SudokuGridOuterDiv2" class="row">
                     <div id="SudokuBelow">
                         <input type="submit" name="SolveBtn" value="Solve" id="SolveButton"
                             onclick="clickSolveButton()" />
                         <input type="submit" name="ClearBtn" value="Clear" id="ClearButton" onclick="clearGrid()" />
+                        <label for="demos">Choose a demo:</label>
+                        <select id="demoSelector">
+                        <option value="0">Demo 1</option>
+                        <option value="1">Demo 2</option>
+                        <option value="2">Demo 3</option>
+                        <option value="3">Demo 4</option>
+                        </select>
                         <input type="submit" name="DemoBtn" value="Load Demo" id="DemoButton" onclick="loadDemo()" />
                     </div>
-                    <div class="SolverErrorDiv">
-
-                    </div>
                 </div>
-            </td>
+                <div class="SolverErrorDiv" class="row">
+
+                </div>
+        </td>
         </tr>
         </table>
         <br />
