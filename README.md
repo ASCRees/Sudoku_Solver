@@ -31,3 +31,10 @@
 ![image](https://user-images.githubusercontent.com/28151071/77929246-56d01500-72a1-11ea-8b98-52f595298536.png)
 
 ![image](https://user-images.githubusercontent.com/28151071/77929422-8e3ec180-72a1-11ea-86fe-18f2ee62fc1d.png)
+
+### Testing
+
+This includes a number of tests that use the Jasmine framework. To run the Jasmine tests open the SpecRunner.html file in a browser.
+
+![image](https://user-images.githubusercontent.com/28151071/78035525-251e8300-7361-11ea-96e1-2515c9f0720f.png)
+
