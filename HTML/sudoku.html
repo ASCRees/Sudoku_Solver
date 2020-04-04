@@ -30,17 +30,17 @@
             <td>
                 <div id="SudokuGridOuterDiv" class="row">
                     <div id="SudokuGridLeftDiv" class="col-md-2">
-                        <!-- <div id="SudokuGrid" id="SudokuGridDiv"> -->
-                            <table border="1" id="sudokutab">
-                            </table>
-                        <!-- </div> -->
+                        <table border="1" id="sudokutab">
+                        </table>
                     </div>
                     <div id="SudokuRight" class="col-md-7">
                         <div id="SudokuResults">
                         </div>
                     </div>
                 </div>
-                <!-- <br /> -->
+                <div id="SolverErrorDiv" class="row ErrorInvisible">
+                    <p>There are no solutions.</p>
+                </div>
                 <div id="SudokuGridOuterDiv2" class="row">
                     <div id="SudokuBelow">
                         <input type="submit" name="SolveBtn" value="Solve" id="SolveButton"
@@ -48,18 +48,16 @@
                         <input type="submit" name="ClearBtn" value="Clear" id="ClearButton" onclick="clearGrid()" />
                         <label for="demos">Choose a demo:</label>
                         <select id="demoSelector">
-                        <option value="0">Demo 1</option>
-                        <option value="1">Demo 2</option>
-                        <option value="2">Demo 3</option>
-                        <option value="3">Demo 4</option>
+                            <option value="0">Demo 1</option>
+                            <option value="1">Demo 2</option>
+                            <option value="2">Demo 3</option>
+                            <option value="3">Demo 4</option>
+                            <option value="4">Demo 5</option>
                         </select>
                         <input type="submit" name="DemoBtn" value="Load Demo" id="DemoButton" onclick="loadDemo()" />
                     </div>
                 </div>
-                <div class="SolverErrorDiv" class="row">
-
-                </div>
-        </td>
+            </td>
         </tr>
         </table>
         <br />
@@ -72,7 +70,7 @@
     </div>
 
 
-
+    <script src="../Scripts/jquery-3.3.1.js"></script>
     <script src="../Scripts/bootstrap.js"></script>
     <script src="../Scripts/sudoku_solver_lib.js"></script>
     <script src="../Scripts/sudoku_solver_page.js"></script>
