@@ -30,19 +30,21 @@ function loadSudokuGrid() {
 }
 function loadSudokuGridResultsList(numberOfResults) {
     if (numberOfResults > 1) {
-        //let sudokuRightDiv: HTMLDivElement = document.getElementById("SudokuRight") as HTMLDivElement;
         let sudokuNumResultsPara = document.createElement("p");
-        sudokuNumResultsPara.textContent = "There are " + numberOfResults.toString() + " solutions.";
-        sudokuNumResultsPara.id = "SudokuNumberOfResultsP";
-        sudokuNumResultsPara.innerHTML = sudokuNumResultsPara.textContent;
         let sudokuResultsDiv = document.getElementById("SudokuResults");
         let sudokuResultsList = document.createElement("ol");
+        sudokuNumResultsPara.textContent = "There are " + numberOfResults.toString() + " solutions.";
+        if (numberOfResults > 10) {
+            sudokuNumResultsPara.textContent += "<br> Showing the first 10.";
+        }
+        sudokuNumResultsPara.id = "SudokuNumberOfResultsP";
+        sudokuNumResultsPara.innerHTML = sudokuNumResultsPara.textContent;
         sudokuResultsList.type = "1";
-        for (let index = 0; index < numberOfResults; index++) {
+        for (let index = 0; index < (numberOfResults > 10 ? 10 : numberOfResults); index++) {
             let anchor = document.createElement("a");
+            let listElement = document.createElement("li");
             anchor.setAttribute("onclick", "displayGridResults(" + index.toString() + ")");
             anchor.innerText = "Solution - " + (index + 1).toString();
-            let listElement = document.createElement("li");
             listElement.appendChild(anchor);
             sudokuResultsList.appendChild(listElement);
         }
@@ -55,7 +57,7 @@ function displayGridResults(gridResultNumber) {
     populateSudokuGrid(listOfGridResults[gridResultNumber]);
 }
 function readSudokuGrid() {
-    let grid = [...Array(9)].map(e => Array(9).fill(0));
+    let grid = [...Array(9)].map((e) => Array(9).fill(0));
     for (let index = 0; index < 81; index++) {
         let rowIndex = Math.floor(index / 9);
         let cellIndex = index % 9;
@@ -73,7 +75,8 @@ function populateSudokuGrid(grid) {
     });
 }
 function clearGrid() {
-    let grid = [...Array(9)].map(e => Array(9).fill(0));
+    let grid = [...Array(9)].map((e) => Array(9).fill(0));
+    hideError();
     hideSolutionList();
     populateSudokuGrid(grid);
 }
@@ -89,8 +92,7 @@ function loadDemo() {
 }
 function prePopulateGrid(demoRequired) {
     let gridStart = [];
-    //= [...Array(4)].map(a=>[...Array(9)].map(e => Array(9).fill(0)));
-    let gridDemo1 = [
+    gridStart.push([
         [0, 8, 0, 5, 3, 0, 2, 7, 6],
         [0, 5, 0, 6, 0, 0, 0, 0, 0],
         [6, 1, 3, 0, 0, 0, 0, 0, 0],
@@ -99,9 +101,9 @@ function prePopulateGrid(demoRequired) {
         [7, 4, 5, 0, 0, 8, 6, 9, 3],
         [0, 7, 0, 9, 6, 0, 5, 0, 0],
         [4, 0, 0, 1, 8, 0, 0, 6, 7],
-        [5, 0, 0, 0, 0, 4, 8, 2, 9]
-    ];
-    let gridDemo2 = [
+        [5, 0, 0, 0, 0, 4, 8, 2, 9],
+    ]);
+    gridStart.push([
         [0, 0, 3, 8, 0, 0, 0, 7, 2],
         [0, 0, 4, 0, 0, 0, 0, 5, 3],
         [0, 7, 0, 0, 2, 0, 6, 0, 0],
@@ -110,9 +112,9 @@ function prePopulateGrid(demoRequired) {
         [8, 4, 0, 2, 0, 9, 0, 0, 7],
         [0, 0, 5, 0, 8, 0, 0, 4, 0],
         [3, 1, 0, 0, 0, 0, 2, 0, 0],
-        [4, 6, 0, 0, 0, 1, 7, 0, 0]
-    ];
-    let gridDemo3 = [
+        [4, 6, 0, 0, 0, 1, 7, 0, 0],
+    ]);
+    gridStart.push([
         [9, 0, 0, 0, 0, 0, 5, 3, 0],
         [2, 0, 0, 8, 0, 1, 0, 0, 9],
         [0, 3, 0, 0, 0, 9, 0, 2, 7],
@@ -121,9 +123,9 @@ function prePopulateGrid(demoRequired) {
         [4, 9, 0, 7, 0, 0, 0, 0, 0],
         [0, 0, 4, 0, 0, 0, 0, 1, 0],
         [0, 0, 0, 1, 0, 7, 0, 0, 0],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0]
-    ];
-    let gridDemo4 = [
+        [1, 0, 0, 0, 0, 0, 0, 0, 0],
+    ]);
+    gridStart.push([
         // Mutiple solutions
         [0, 8, 0, 0, 0, 9, 7, 4, 3],
         [0, 5, 0, 0, 0, 8, 0, 1, 0],
@@ -133,18 +135,39 @@ function prePopulateGrid(demoRequired) {
         [0, 0, 0, 3, 0, 0, 0, 0, 6],
         [0, 0, 0, 0, 0, 0, 0, 7, 0],
         [0, 3, 0, 5, 0, 0, 0, 8, 0],
-        [9, 7, 2, 4, 0, 0, 0, 5, 0]
-    ];
-    gridStart.push(gridDemo1);
-    gridStart.push(gridDemo2);
-    gridStart.push(gridDemo3);
-    gridStart.push(gridDemo4);
+        [9, 7, 2, 4, 0, 0, 0, 5, 0],
+    ]);
+    gridStart.push([
+        // Mutiple solutions
+        [1, 0, 0, 4, 0, 0, 7, 0, 0],
+        [0, 2, 0, 0, 5, 0, 0, 8, 0],
+        [0, 0, 3, 0, 0, 6, 0, 0, 9],
+        [0, 1, 0, 0, 4, 0, 0, 7, 0],
+        [0, 0, 2, 0, 0, 5, 0, 0, 8],
+        [9, 0, 0, 3, 0, 0, 6, 0, 0],
+        [7, 0, 0, 0, 0, 8, 0, 0, 2],
+        [8, 0, 0, 2, 0, 0, 9, 0, 0],
+        [0, 9, 0, 0, 7, 0, 0, 1, 0],
+    ]);
     populateSudokuGrid(gridStart[demoRequired]);
 }
 function clickSolveButton() {
     let gridEnd = readSudokuGrid();
     gridEnd = generate_display_grid(gridEnd);
-    populateSudokuGrid(gridEnd);
+    if (listOfGridResults.length > 0) {
+        populateSudokuGrid(gridEnd);
+    }
+    else {
+        displayError();
+    }
+}
+function displayError() {
+    let sudokuErrorDiv = document.getElementById("SolverErrorDiv");
+    sudokuErrorDiv.className = "row ErrorVisible";
+}
+function hideError() {
+    let sudokuErrorDiv = document.getElementById("SolverErrorDiv");
+    sudokuErrorDiv.className = "row ErrorInvisible";
 }
 function generate_display_grid(grid) {
     let sudokuSolver = new Sudoko.SolveSudoko(grid);

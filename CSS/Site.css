@@ -128,3 +128,25 @@ a:active {
     color: white;
     text-decoration: none;
 }
+
+div#SolverErrorDiv p {
+    color: red;
+    margin-left: 15px;
+    font-size: large;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#SolverErrorDiv.ErrorInvisible {
+    visibility: hidden;
+    height: 15px;
+}
+
+#SolverErrorDiv.ErrorVisible {
+    visibility: visible;
+    height: 30px;
+}
+
+div#SudokuGridOuterDiv2 {
+    margin-top: -15px;
+}
