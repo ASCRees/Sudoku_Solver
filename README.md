@@ -19,7 +19,7 @@
 
 > The code currently performs the solving of Sudoku puzzles and includes the ability to load a demo puzzle to solve.
 > The code also includes an incomplete class (GenerateSudoko) that is to generate new sudoku puzzles. Currently this
-> allows generates a random seed for a Sudoku puzzle by filling in 3 unrelated 3 by 3 grids on the puzzle then solving it.
+> generates a random seed for a Sudoku puzzle by filling in 3 unrelated 3 by 3 grids on the puzzle then solving it.
 > Still to do is to then remove random values until we get to a point where we have a single solution.
 
 ![image](https://user-images.githubusercontent.com/28151071/77929115-356f2900-72a1-11ea-8273-f8fde18566e2.png)
