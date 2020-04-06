@@ -1,7 +1,6 @@
 # Sudoku Solver
 
-> This small application will solve a sudoku puzzle based upon a grid containing the starting numbers
-> This is written in Typescript
+> This small Typescript application will solve a Sudoku puzzle based upon a grid containing the starting numbers.
 
 > Version 0.1
 
@@ -10,9 +9,8 @@
 > Open the HTML page sudoku.html in a browser
 > This will prefill with an example starting point.
 > Adjust the values as required and press Solve.
-> "Load Demo" will load a sample starting point that has multiple solutions.
-> After the Sudoku has been solved if there are multiple possible solution they will be listed on the right,
-> allowing the user to select the solution and view it.
+> one of five demos can be loaded by picking a the relevant value from the drop down and clicking "Load Demo".
+> If there are multiple solutions it will list them on the right hand side, allowing the user to select the solution and view it.
 > The first solution will always be displayed after pressing solve.
 
 ## In Progress
